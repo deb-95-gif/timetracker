@@ -1,9 +1,5 @@
-FROM ubuntu
+FROM tomcat:9.0
 
-RUN apt-get update
-RUN apt-get -y install python python3-pip
-RUN pip3 install flask 
+COPY ./web/target/*.war  /usr/local/tomcat/webapps/timetracker.war
 
-COPY app.py /opt/app.py
 
-ENTRYPOINT FLASK_APP=/opt/app.py flask run --host=0.0.0.0
